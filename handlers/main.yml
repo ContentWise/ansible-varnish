@@ -1,0 +1,10 @@
+---
+- name: restart varnish
+  systemd:
+    name: varnish
+    state: restarted
+
+- name: reload varnish
+  systemd:
+    name: varnish
+    state: reloaded

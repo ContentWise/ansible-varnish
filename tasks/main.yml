@@ -1,0 +1,29 @@
+---
+- name: install kong
+  apt:
+    deb: "{{ varnish_deb_location }}"
+  notify: restart varnish
+  when: ansible_os_family == 'Debian'
+
+- yum:
+    name: "{{ varnish_rpm_location }}"
+  notify: restart varnish
+  when: ansible_os_family == 'RedHat'
+
+- name: crate varnish params file
+  template:
+    dest: /etc/varnish/varnish.params
+    src: "varnish.params.j2"
+  notify: restart varnish
+
+- name: crate varnish vcl file
+  template:
+    dest: /etc/varnish/default.vcl
+    src: "default.vcl.j2"
+  notify: reload varnish
+
+- name: ensure varnish is started
+  systemd:
+    name: varnish
+    enabled: yes
+    state: started
