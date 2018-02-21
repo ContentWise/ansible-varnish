@@ -27,7 +27,7 @@ VARNISH_SECRET_FILE=/etc/varnish/secret
 
 # Backend storage specification, see Storage Types in the varnishd(5)
 # man page for details.
-VARNISH_STORAGE="malloc,256M"
+VARNISH_STORAGE="{{ varnish_storage }}"
 
 # User and group for the varnishd worker processes
 VARNISH_USER=varnish

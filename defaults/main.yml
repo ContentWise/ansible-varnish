@@ -7,6 +7,7 @@ varnish_listen_port: 6081
 varnish_thread_pool_min: 100
 varnish_thread_pool_max: 5000
 varnish_thread_pool_timeout: 300
+varnish_storage: "malloc,1G"
 
 varnish_default_vcl_content: |
   #

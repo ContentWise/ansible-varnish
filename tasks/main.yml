@@ -1,5 +1,5 @@
 ---
-- name: install kong
+- name: install varnish
   apt:
     deb: "{{ varnish_deb_location }}"
   notify: restart varnish
@@ -9,6 +9,12 @@
     name: "{{ varnish_rpm_location }}"
   notify: restart varnish
   when: ansible_os_family == 'RedHat'
+
+- name: crate varnish service file
+  template:
+    dest: /etc/systemd/system/varnish.service
+    src: "varnish.service.j2"
+  notify: reload systemd
 
 - name: crate varnish params file
   template:
