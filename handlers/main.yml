@@ -1,8 +1,4 @@
 ---
-- name: reload systemd
-  systemd:
-    daemon_reload: yes
-
 - name: restart varnish
   systemd:
     name: varnish
@@ -12,3 +8,7 @@
   systemd:
     name: varnish
     state: reloaded
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
